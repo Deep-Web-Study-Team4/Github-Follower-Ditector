@@ -1,12 +1,17 @@
-import { useState } from "react";
-import styled from "styled-components";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { RecoilRoot } from "recoil";
+import Home from "pages/Home";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const queryClient = new QueryClient();
 
-  return <></>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <Home />
+      </RecoilRoot>
+    </QueryClientProvider>
+  );
 }
-
-const StWrapper = styled.div``;
 
 export default App;
