@@ -4,11 +4,6 @@ import { FollowerFollowingType } from "Types/UserInfoTypes";
 
 //팔로잉, 팔로워 정보 한 번에 리턴
 export const useGetAccountInfo = (pat: string) => {
-  // const  =
-
-  // useEffect(() => {
-  // }, [pat])
-
   const { data: followingInfo } = useQuery(
     ["followingInfo"],
     () => getFollowingInfo(pat),
@@ -24,8 +19,6 @@ export const useGetAccountInfo = (pat: string) => {
       retry: 3,
     }
   );
-
-  //내가 쓰레기
 
   const followerNameList =
     followerInfo &&
