@@ -2,14 +2,14 @@ import { useGetAccountInfo } from "lib/hooks/useGetAccountInfo";
 import { useRecoilValue } from "recoil";
 import { userInfoState } from "Recoil/atom";
 import styled from "styled-components";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { UserInfo } from "Types/UserInfoTypes";
 import { followUser } from "lib/api";
-//상대가 팔로우 했는데 내가 안한 리스트
+import { useEffect } from "react";
 
 const FollowerList = () => {
   const userInfo = useRecoilValue(userInfoState);
-
+  const queryClient = useQueryClient();
   const { NonFollowingList } = useGetAccountInfo(
     userInfo.pat,
     userInfo.username
@@ -19,8 +19,9 @@ const FollowerList = () => {
 
   const { mutate, isLoading, isError, error, isSuccess } = useReqFollowing;
 
-  const onClickBtn = (nonFollowUserName: string) => {
-    mutate({ username: nonFollowUserName, pat: userInfo.pat });
+  const onClickBtn = async (nonFollowUserName: string) => {
+    await mutate({ username: nonFollowUserName, pat: userInfo.pat });
+    queryClient.invalidateQueries(["followerInfo"]);
   };
   return (
     <>
