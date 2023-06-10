@@ -5,7 +5,7 @@ import { FollowerFollowingType } from "Types/UserInfoTypes";
 //팔로잉, 팔로워 정보 한 번에 리턴
 export const useGetAccountInfo = (pat: string, username: string) => {
   const { data: followingInfo } = useQuery(
-    ["followingInfo"],
+    ["followingInfo", pat, username],
     () => getFollowingInfo(pat, username),
     {
       retry: 3,
@@ -13,7 +13,7 @@ export const useGetAccountInfo = (pat: string, username: string) => {
   );
 
   const { data: followerInfo } = useQuery(
-    ["followerInfo"],
+    ["followerInfo", pat, username],
     () => getFollowerInfo(pat, username),
     {
       retry: 3,
@@ -37,6 +37,7 @@ export const useGetAccountInfo = (pat: string, username: string) => {
     followerNameList.filter((followerName: string) => {
       if (!followingNameList.includes(followerName)) return followerName;
     });
+  console.log(nonFollowingList);
 
   return {
     FollowingList: followingInfo,
