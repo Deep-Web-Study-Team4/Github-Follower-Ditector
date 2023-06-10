@@ -7,12 +7,10 @@ import styled from "styled-components";
 
 const FollowerList = () => {
   const userInfo = useRecoilValue(userInfoState);
-  console.log(userInfo);
   const { NonFollowingList } = useGetAccountInfo(
     userInfo.pat,
     userInfo.username
   );
-
   return (
     <>
       <StFollowingCardWrapper>
