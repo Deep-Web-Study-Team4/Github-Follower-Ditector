@@ -30,7 +30,7 @@ export const getFollowerInfo = async (pat: string, username: string) => {
 
 export const followUser = async (userInfo: UserInfo) => {
   const { data } = await client.put(
-    `/user/following/seojisoosoo`,
+    `/user/following/${userInfo.username}`,
     {},
     {
       headers: {

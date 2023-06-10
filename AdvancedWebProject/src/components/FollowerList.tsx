@@ -9,7 +9,7 @@ import { followUser } from "lib/api";
 
 const FollowerList = () => {
   const userInfo = useRecoilValue(userInfoState);
-  console.log(userInfo);
+
   const { NonFollowingList } = useGetAccountInfo(
     userInfo.pat,
     userInfo.username
