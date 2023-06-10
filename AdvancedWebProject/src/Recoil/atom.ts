@@ -1,10 +1,14 @@
 import { atom } from "recoil";
 import { recoilPersist } from "recoil-persist";
+import { UserInfo } from "Types/UserInfoTypes";
 
 const { persistAtom } = recoilPersist();
 
-export const userPatState = atom<string>({
+export const userInfoState = atom<UserInfo>({
   key: "userPat",
-  default: "",
+  default: {
+    pat: "",
+    username: "",
+  },
   effects_UNSTABLE: [persistAtom],
 });

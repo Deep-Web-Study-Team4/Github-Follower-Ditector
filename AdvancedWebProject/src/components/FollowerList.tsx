@@ -1,14 +1,17 @@
 import { useGetAccountInfo } from "lib/hooks/useGetAccountInfo";
-import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
-import { userPatState } from "Recoil/atom";
+import { userInfoState } from "Recoil/atom";
 import styled from "styled-components";
 
 //상대가 팔로우 했는데 내가 안한 리스트
 
 const FollowerList = () => {
-  const userPat = useRecoilValue(userPatState);
-  const { NonFollowingList } = useGetAccountInfo(userPat);
+  const userInfo = useRecoilValue(userInfoState);
+  console.log(userInfo);
+  const { NonFollowingList } = useGetAccountInfo(
+    userInfo.pat,
+    userInfo.username
+  );
 
   return (
     <>
