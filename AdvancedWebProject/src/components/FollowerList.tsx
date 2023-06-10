@@ -1,4 +1,5 @@
 import { useGetAccountInfo } from "lib/hooks/useGetAccountInfo";
+
 import { useRecoilValue } from "recoil";
 import { userInfoState } from "Recoil/atom";
 import styled from "styled-components";
@@ -7,7 +8,7 @@ import styled from "styled-components";
 
 const FollowerList = () => {
   const userInfo = useRecoilValue(userInfoState);
-  console.log(userInfo);
+
   const { NonFollowingList } = useGetAccountInfo(
     userInfo.pat,
     userInfo.username
