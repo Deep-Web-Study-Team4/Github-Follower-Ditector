@@ -1,5 +1,5 @@
 import { client } from "./axios";
-
+import { UserInfo } from "Types/UserInfoTypes";
 const PER_PAGE = 100;
 
 export const getFollowingInfo = async (pat: string, username: string) => {
@@ -25,5 +25,19 @@ export const getFollowerInfo = async (pat: string, username: string) => {
     }
   );
 
+  return data;
+};
+
+export const followUser = async (userInfo: UserInfo) => {
+  const { data } = await client.put(
+    `/user/following/seojisoosoo`,
+    {},
+    {
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `token ${userInfo.pat}`,
+      },
+    }
+  );
   return data;
 };
