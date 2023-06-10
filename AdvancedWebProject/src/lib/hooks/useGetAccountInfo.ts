@@ -3,10 +3,10 @@ import { getFollowerInfo, getFollowingInfo } from "lib/api";
 import { FollowerFollowingType } from "Types/UserInfoTypes";
 
 //팔로잉, 팔로워 정보 한 번에 리턴
-export const useGetAccountInfo = (pat: string) => {
+export const useGetAccountInfo = (pat: string, username: string) => {
   const { data: followingInfo } = useQuery(
     ["followingInfo"],
-    () => getFollowingInfo(pat),
+    () => getFollowingInfo(pat, username),
     {
       retry: 3,
     }
@@ -14,7 +14,7 @@ export const useGetAccountInfo = (pat: string) => {
 
   const { data: followerInfo } = useQuery(
     ["followerInfo"],
-    () => getFollowerInfo(pat),
+    () => getFollowerInfo(pat, username),
     {
       retry: 3,
     }

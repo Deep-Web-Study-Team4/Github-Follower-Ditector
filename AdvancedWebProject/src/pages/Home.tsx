@@ -1,16 +1,21 @@
 import FollowerList from "components/FollowerList";
 import { useRef } from "react";
 import { useSetRecoilState } from "recoil";
-import { userPatState } from "Recoil/atom";
+import { userInfoState } from "Recoil/atom";
 import styled from "styled-components";
 
 const Home = () => {
-  const setUserPat = useSetRecoilState(userPatState);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const setUserInfo = useSetRecoilState(userInfoState);
+  const patRef = useRef<HTMLInputElement>(null);
+  const usernameRef = useRef<HTMLInputElement>(null);
 
   const handleSubmitToken = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setUserPat(inputRef.current!.value);
+
+    setUserInfo({
+      pat: patRef.current!.value,
+      username: usernameRef.current!.value,
+    });
   };
 
   return (
@@ -21,8 +26,14 @@ const Home = () => {
           <input
             type="text"
             placeholder="Github 토큰(PAT)을 입력해주세요"
-            ref={inputRef}
+            ref={patRef}
           />
+          <input
+            type="text"
+            placeholder="Github 유저이름을 입력해주세요"
+            ref={usernameRef}
+          />
+          <button>Submit</button>
         </StPatForm>
 
         <FollowerList />
