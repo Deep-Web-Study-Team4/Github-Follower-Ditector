@@ -2,9 +2,9 @@ import { client } from "./axios";
 
 const PER_PAGE = 100;
 
-export const getFollowingInfo = async (pat: string) => {
+export const getFollowingInfo = async (pat: string, username: string) => {
   const { data } = await client.get(
-    `/users/pinktopaz/following?per_page=${PER_PAGE}`,
+    `/users/${username}/following?per_page=${PER_PAGE}`,
     {
       headers: {
         Authorization: `token ${pat}`,
@@ -15,9 +15,9 @@ export const getFollowingInfo = async (pat: string) => {
   return data;
 };
 
-export const getFollowerInfo = async (pat: string) => {
+export const getFollowerInfo = async (pat: string, username: string) => {
   const { data } = await client.get(
-    `/users/pinktopaz/followers?per_page=${PER_PAGE}`,
+    `/users/${username}/followers?per_page=${PER_PAGE}`,
     {
       headers: {
         Authorization: `token ${pat}`,
